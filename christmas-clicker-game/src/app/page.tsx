@@ -5,11 +5,14 @@ import {useEffect, useState} from "react";
 export default function Home() {
   const [count, setCount] = useState(0); // useState!
   const [img, setImg] = useState("1.png");
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     console.log(`[${count}] boop`)
+    if (isPlaying) return;
     const audio = new Audio("/nom-nom-nom_gPJiWn4.mp3");
     if (count > 0 ) {
+      setIsPlaying(true);
       audio.play();
       setTimeout(() => {
         setImg("2.png");
@@ -40,6 +43,7 @@ export default function Home() {
       }, 900);
       setTimeout(() => {
         setImg("1.png");
+        setIsPlaying(false);
       }, 1000);
     }
 
