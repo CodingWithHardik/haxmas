@@ -56,7 +56,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6 text-center">
           <h1 className={"text-6xl self-center my-10 font-deca"}>Merry Christmas</h1>
           <p className={"text-3xl font-bold"}>Count: {count}</p>
-          <JollyOrpheusClick onClick={() => {setCount(count + 1)}} img={img} />
+          <JollyOrpheusClick onClick={() => {if (!isPlaying) setCount(count + 1)}} img={img} />
         </div>
       </main>
     </div>
