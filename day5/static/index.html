@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/tailwindcss">
+        @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+    <title>Hardik's Gift Tracker</title>
+</head>
+
+<body class="bg-gradient-to-tl bg-linear-to-bl from-violet-500 to-fuchsia-500">
+    <div id="loginPage" class="flex items-center justify-center min-h-screen">
+        <div class="bg-red-400 rounded-4xl p-12 shadow-lg">
+            <div class="text-center space-y-6">
+                <h1 class="text-4xl font-bold text-white">Hardik's Gift Tracker</h1>
+                <p class="text-white">Enter the password to access</p>
+                <form id="loginForm" class="space-y-4">
+                    <input id="password" type="password" name="password" placeholder="Enter password" required class="bg-blue-200 rounded-2xl p-3 w-64 text-center focus:outline-none">
+                    <br>
+                    <div id="loginError" class="text-red-700 text-sm hidden"></div>
+                    <br>
+                    <div class="bg-green-400 w-40 rounded-4xl p-2 hover:bg-green-600 mx-auto cursor-pointer">
+                        <input type="submit" value="Login" class="cursor-pointer w-full">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="trackerPage" class="hidden">
+    <div class="bg-gradient-to-r from-red-400 to-red-500 rounded-3xl shadow-2xl m-8 p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="flex items-center justify-center">
+                <img src="/image.png" class="w-64 h-auto object-cover rounded-2xl shadow-lg">
+            </div>
+            <div class="space-y-6">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl font-bold text-white mb-2">Hardik's Gift Tracker</h1>
+                    <p class="text-white text-lg opacity-90">Tracking gifts since 2025</p>
+                </div>
+                <form id="giftForm" class="bg-white rounded-2xl p-6 shadow-lg space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-800 font-semibold mb-2">First Name</label>
+                        <input id="name" type="text" name="name" placeholder="Enter name" required class="w-full bg-gray-100 border-2 border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-400 transition">
+                    </div>
+                    <div>
+                        <label for="gift" class="block text-gray-800 font-semibold mb-2">Gift</label>
+                        <input id="gift" type="text" name="gift" placeholder="What's the gift?" required class="w-full bg-gray-100 border-2 border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-400 transition">
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white font-bold py-3 rounded-lg transition transform hover:scale-105 shadow-md">
+                        Add Gift
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="m-8">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Gifts</h2>
+        <div class="overflow-x-auto rounded-xl shadow-2xl">
+            <table class="w-full border-collapse bg-white">
+                <thead>
+                    <tr class="bg-gradient-to-r from-red-400 to-red-500 text-white">
+                        <th class="border border-gray-200 p-4 text-left font-bold">Gift For</th>
+                        <th class="border border-gray-200 p-4 text-left font-bold">Gift</th>
+                        <th class="border border-gray-200 p-4 text-center font-bold">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="gifts" class="divide-y divide-gray-200">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
