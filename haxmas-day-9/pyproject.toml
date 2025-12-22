@@ -5,8 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "haxmas-day-9-hardikgupta2232"
 version = "0.0.1"
+description = "Haxmas day 9 python package"
+readme = "README.md"
+requires-python = ">=3.8"
 dependencies = [
-    "textual",
+  "textual"
 ]
 
 [project.scripts]
