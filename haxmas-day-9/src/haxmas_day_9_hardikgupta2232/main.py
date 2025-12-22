@@ -1,46 +1,46 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Footer, Header, Button, Label
+from textual.widgets import Header, Footer, Button, Label
 from textual.containers import Grid, Vertical, Center
 from textual.screen import Screen
 import datetime
+
 
 class DayScreen(Screen):
 
     CSS = """
     DayScreen {
         align: center middle;
-        background: rgb(20,20,20);
+        background: rgb(18,18,28);
     }
 
     #dialog {
         width: 50;
         border: thick cyan;
-        background: rgb(30,30,30);
+        background: rgb(30,30,40);
         padding: 2;
         align: center middle;
     }
 
     #dialog Label {
-        width: 100%;
         text-align: center;
-        margin-bottom: 1;
         color: white;
+        margin-bottom: 1;
     }
     """
 
     gifts = {
-        1: "React Workshop!",
-        2: "A Fusering Workshop!",
-        3: "Keyring with Onshape!",
-        4: "Hono Backend!",
-        5: "Full Stack App with Flask!",
-        6: "3D Printable Ruler!",
-        7: "Interactive Christmas Tree!",
-        8: "Automating Cookie Clicker!",
-        9: "TUI in Textual!",
-        10: "No leeks :3",
-        11: "No leeks :p",
-        12: "Still no leeks :3c"
+        1: "React Workshop",
+        2: "Fusion Workshop",
+        3: "Onshape Keyring",
+        4: "Hono Backend",
+        5: "Flask Full Stack",
+        6: "3D Printable Ruler",
+        7: "Interactive Tree",
+        8: "Cookie Clicker Bot",
+        9: "Textual TUI",
+        10: "No leeks",
+        11: "Still no leeks",
+        12: "Absolutely no leeks",
     }
 
     def __init__(self, day: int):
@@ -49,8 +49,8 @@ class DayScreen(Screen):
 
     def compose(self) -> ComposeResult:
         with Vertical(id="dialog"):
-            yield Label(f"Day {self.day} Gift")
-            yield Label(self.gifts.get(self.day))
+            yield Label(f"Day {self.day}")
+            yield Label(self.gifts.get(self.day, "Surprise"))
             with Center():
                 yield Button("Close", id="close")
 
@@ -58,11 +58,12 @@ class DayScreen(Screen):
         self.dismiss()
         event.stop()
 
+
 class AdventCalendarApp(App):
 
     CSS = """
     Screen {
-        background: rgb(15,15,25);
+        background: rgb(12,12,20);
     }
 
     Grid {
@@ -91,7 +92,7 @@ class AdventCalendarApp(App):
     Button.day12 { background: violet; }
 
     Button.opened {
-        background: rgb(0,200,100);
+        background: rgb(0,180,110);
         color: white;
     }
 
@@ -103,8 +104,8 @@ class AdventCalendarApp(App):
     """
 
     BINDINGS = [
-        ("d", "toggle_dark", "Toggle dark mode"),
-        ("r", "reset_days", "Reset days")
+        ("d", "toggle_dark", "Toggle dark"),
+        ("r", "reset_days", "Reset days"),
     ]
 
     START_DATE = datetime.date(2025, 12, 13)
@@ -119,6 +120,7 @@ class AdventCalendarApp(App):
                 btn = Button(str(day), id=f"day-{day}")
                 btn.add_class(f"day{day}")
                 yield btn
+
         yield Footer()
 
     def on_button_pressed(self, event: Button.Pressed):
@@ -149,8 +151,11 @@ class AdventCalendarApp(App):
     def action_toggle_dark(self):
         self.theme = "textual-dark" if self.theme == "textual-light" else "textual-light"
 
+
 def main():
-    AdventCalendarApp().run()
+    app = AdventCalendarApp()
+    app.run()
+
 
 if __name__ == "__main__":
     main()
