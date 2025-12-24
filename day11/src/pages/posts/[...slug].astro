@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import BlogPost from '../../layouts/BlogPost.astro'
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }))
+}
+
+type Props = CollectionEntry<'blog'>
+const post = Astro.props
+
+const { Content } = await render(post)
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Blog</title>
+  </head>
+
+  <main class="min-h-screen bg-slate-100 flex justify-center">
+  <div class="w-full max-w-3xl px-6 py-12">
+    <BlogPost {...post.data}>
+      <div class="prose prose-slate lg:prose-lg mx-auto
+                  prose-img:rounded-xl
+                  prose-img:shadow
+                  prose-a:text-red-500
+                  prose-a:no-underline hover:prose-a:underline">
+        <Content />
+      </div>
+    </BlogPost>
+  </div>
+</main>
+</html>
+

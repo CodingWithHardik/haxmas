@@ -5,3 +5,5 @@ pcb/.DS_Store
 day8/.DS_Store
 day8/.venv/
 .venv
+# Local Netlify folder
+.netlify

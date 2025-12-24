@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+import FormattedDate from '../components/FormattedDate.astro';
+
+import '../styles/global.css';
+import '../styles/post.css';
+
+type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, heroImage } = Astro.props;
+---
+<div class="post-page page-shell max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <article class="post bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 sm:p-8">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                {title}
+            </h1>
+
+            <p class="description text-white dark:text-gray-400 text-lg mb-5">
+                {description}
+            </p>
+
+            {heroImage && (
+                <Image
+                    src={heroImage}
+                    format="webp"
+                    alt={title}
+                    class="hero w-full rounded-lg mb-6 object-cover"
+                />
+            )}
+
+            <p class="date text-sm text-white">
+                <FormattedDate date={pubDate} />
+            </p>
+        </header>
+        
+        <div class="body prose prose-lg dark:prose-invert max-w-none text-white">
+            <slot />
+        </div>
+    </article>
+</div>

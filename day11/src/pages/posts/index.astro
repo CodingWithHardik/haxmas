@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+
+import "../../styles/global.css";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Blog</title>
+  </head>
+
+  <body>
+    <div class="posts-page page-shell">
+      <header class="page-header text-center mb-10">
+        <h1 class="text-3xl font-bold mb-2">My Very Cool Blog</h1>
+        <p class="tagline text-slate-600">
+          Small thoughts simple words real stories
+        </p>
+      </header>
+
+      {
+        posts.length === 0 && (
+          <p class="empty text-center text-slate-500">
+            No posts yet just started writing :)
+          </p>
+        )
+      }
+
+      <div class="posts grid gap-6 max-w-3xl mx-auto">
+        {
+          posts.map((post) => (
+            <article class="post-card bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+              <a
+                href={`/posts/${post.id}`}
+                class="title-link block text-xl font-semibold text-slate-800 hover:text-red-500"
+              >
+                {post.data.title}
+              </a>
+
+              <p class="description text-slate-600 mt-2">
+                {post.data.description}
+              </p>
+
+              <p class="meta text-sm text-slate-400 mt-4">
+                Published on <FormattedDate date={post.data.pubDate} />
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </body>
+</html>

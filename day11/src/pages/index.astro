@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Blog</title>
+  </head>
+
+  <body class="min-h-screen bg-slate-100 text-slate-900">
+    <main class="flex min-h-screen items-center justify-center text-center">
+      <section class="rounded-2xl bg-white p-10 shadow-lg max-w-md w-full">
+        <h1 class="text-4xl font-bold mb-3">
+          Hardik's Blog
+        </h1>
+
+        <p class="text-slate-600 mb-6">
+          Such a jolly blog
+        </p>
+
+        <a
+          href="/posts"
+          class="inline-block rounded-xl bg-red-500 px-6 py-3 text-white font-semibold hover:bg-red-600 transition"
+        >
+          See Posts
+        </a>
+      </section>
+    </main>
+  </body>
+</html>
