@@ -13,13 +13,13 @@ renderer.setAnimationLoop(animate);
 renderer.render(scene, camera);
 
 const geometry = new THREE.SphereGeometry(1, 32, 32);
-const texture = new THREE.TextureLoader().load('red.png')
+const texture = new THREE.TextureLoader().load('/red.png')
 const material = new THREE.MeshBasicMaterial({ map: texture });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 const donut_geo = new THREE.TorusGeometry(10, 2, 16, 100);
-const texture1 = new THREE.TextureLoader().load('leaves.png')
+const texture1 = new THREE.TextureLoader().load('/leaves.png')
 const donut_tex = new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture1 });
 const donut = new THREE.Mesh(donut_geo, donut_tex);
 scene.add(donut);
