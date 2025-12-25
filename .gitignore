@@ -7,3 +7,6 @@ day8/.venv/
 .venv
 # Local Netlify folder
 .netlify
+day12/.DS_Store
+day12/node_modules/
+day12/.vite
